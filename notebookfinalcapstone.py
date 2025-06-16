@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import re
+import requests
 import string
 from collections import Counter
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
@@ -424,6 +425,14 @@ plt.show()
 - File ini nantinya bisa digunakan untuk integrasi ke backend (misal: PHP native atau Next.js API).
 """
 
-joblib.dump(le, "../ParentCare-BE/label_parenting_match_model.pkl")
-joblib.dump(model, '../ParentCare-BE/parenting_match_model.pkl')
+joblib.dump(le, "ParentCare-BE/label_parenting_match_model.pkl")
+joblib.dump(model, 'ParentCare-BE/parenting_match_model.pkl')
+with open("label_parenting_match_model.pkl", "rb") as f1, open("parenting_match_model.pkl", "rb") as f2:
+    response = requests.post(
+        "https://be-production-0885.up.railway.app/api/model/upload",
+        files={
+            "label_model": f1,
+            "main_model": f2
+        }
+    )
 print("Model disimpan sebagai parenting_match_model.pkl")
