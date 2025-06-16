@@ -17,7 +17,6 @@ import seaborn as sns
 import re
 import string
 from collections import Counter
-from IPython.display import display
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -211,7 +210,7 @@ print("✅ Dataset final berhasil disimpan sebagai 'datasetgabungan.csv'")
 datasetgabungan = pd.read_csv('datasetgabungan.csv')
 
 # Tampilkan 5 sampel acak yang rapi
-display(datasetgabungan.sample(5))
+print(datasetgabungan.sample(5))
 
 # Tampilkan total data
 print(f"\nTotal data setelah digabung: {len(datasetgabungan)}")
@@ -235,7 +234,7 @@ Dataset akhir bernama `datasetfinalcleaning` merupakan hasil penggabungan dari t
 datasetgabungan = datasetgabungan[datasetgabungan['text'].str.strip().str.len() > 5]
 
 # Menampilkan 5 sampel secara acak dalam bentuk tabel yang rapi
-display(datasetgabungan.sample(10))
+print(datasetgabungan.sample(10))
 
 """## EDA (Exploratory Data Analysis) Dataset Hasil Cleaning"""
 
